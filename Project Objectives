@@ -1,8 +1,7 @@
-Project Title: Gym Hero
+Project Title: Gym Hero version 1.0
 Project Description:
 Targetting everyone who wants to keep in shape during 2020.
-The user will choose a workout type(Upper body, lower body, abs, cardio, etc.), and intensity of music (moderate, intense)
-Once this is selected, spotify will link a playlist. 
+The user will be able to choose a genre of music, then the user will be prompted with a button that will say start workout, which will then generate a workout with diagrams.
 
 User Story
 The user would want to use this application for a no hassle workout that includes music to match the workout type and duration.
@@ -10,19 +9,18 @@ This app is all inclusive, no multiple apps such as spotify + workout apps would
 
 
 Wireframe or sketch of design
-1. Variety of drop down menus noting each bodyparts for workout display diagrams for each workout.
-2. 3 different music options=levels of intensity starting from moderate to intense. 
-3. Display albulm cover)
-4. Include a counter (Timer)
-5. Modal box area for music selection.
-6. Display instructions and diagram for each workout.
+1. A form to enter genere of music. 
+2. Display song and artist
+3. Display instructions and diagram for each workout.
+4. Start button to execute workout and music functions.
 
 
 APIs to be used: 
-https://wger.de/en/software/api
-https://developer.spotify.com/documentation/
+https://wger.de/en/software/api key:16a85a599865174319c1a5f12bced324e58d7507
+https://rapidapi.com/deezerdevs/api/deezer-1?endpoint=53aa5085e4b07e1f4ebeb429 key:aa6c08156amshcbbed180a5d0e5bp1575fejsn36b1
+
 
 Rough breakdown of tasks
 Liam-HTML/CSS
-Ryan-APIs-Spotify
+Ryan-APIs-deezer music.
 Ken-APIs-Workout, Github Repositories
