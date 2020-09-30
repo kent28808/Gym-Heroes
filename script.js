@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    $("#submit-button").on("click", function() {
+    $("#choose-button").on("click", function() {
         event.preventDefault()
         getVideo();
         getExcercise();
@@ -28,8 +28,11 @@ function getExcercise (){
         },
         success: function(response) {
         console.log(response)
-
+        var workoutName = response.id;
+        for (var i = 0; i < workoutName.length; i++) {
+         
+            //console.log(workoutName);
         }
-    })
+    }})
 }
 })
