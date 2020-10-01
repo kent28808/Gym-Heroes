@@ -7,19 +7,19 @@ $(document).ready(function () {
     })
 
     function getVideo() {
-       var youtubeForm = ""
+        var youtubeForm = ""
         $.ajax({
             type: "GET",
             // url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=music%20" + youtubeForm + "&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
             dataType: "json",
             success: function (response) {
-                
+
                 var videoId = response.etag;
                 // var youtubeForm = $("").val();
                 var youtubeEmbed = ("https://www.youtube.com/embed/" + videoID + "?autoplay=1")
                 $("#youtube").attr("src", youtubeEmbed);
 
-                
+
             }
         }
         )
@@ -40,8 +40,8 @@ $(document).ready(function () {
                 var results = response.results;
                 for (var i = 0; i < results.length; i++) {
                     //displays results by "id"
-                    getExercises(results[i].id)
-                    console.log(results[i]);
+                    getExercises(results[i].id);
+                    //console.log(results[i]);
                 }
             }
         })
@@ -91,38 +91,28 @@ $(document).ready(function () {
                 getExercisesuccess(resultscategory, filteredresults)
                 $.ajax({
                     type: "Get",
-                    url: "https://wger.de/api/v2/exerciseimage/"+id+"/thumbnails/",
+                    url: "https://wger.de/api/v2/exerciseimage/" + id + "/thumbnails/?language=2",
                     dataType: "json",
                     headers: {
                         Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
                     },
-                    success: function (resultsimgs){
-                        $.ajax({
-                            type: "Get",
-                            url: "https://wger.de/api/v2/exerciseinfo/"+id+"/",
-                            dataType: "json",
-                            headers: {
-                                Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
-                            },
-                            success: function(resultsinfo){
-                                console.log(resultsinfo)
-                                console.log(resultscategory)
-                                console.log(resultsimgs)
+                    success: function (resultsimgs) {
+                        console.log("exercisenumber" + id)
+                        console.log(resultscategory)
+                        console.log(resultsimgs)
 
 
-                            }
-                        })
                     }
-                
-                    
-                })
 
+                })
             }
 
 
-
         })
-        //console.log(filteredresults)
+
     }
 
+
+
 })
+        //console.log(filteredresults)
