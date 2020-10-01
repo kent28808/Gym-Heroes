@@ -1,0 +1,54 @@
+body {
+    background-color: #2589bd;
+}
+
+
+.main-container {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+
+.l-content {
+    margin: 0 auto;
+}
+
+.pure-menu-link {
+    background-color: white;
+}
+
+ .workout-tables,
+ .information {
+    max-width: 5000px;
+    margin: 0 auto;
+ }
+.workout-tables {
+    margin-bottom: 3.125em;
+    text-align: center;
+}
+
+
+.workout-table {
+    border: 1px solid #ddd;
+    margin: 0 0.5em 2em;
+    padding: 0 0 3em;
+    background: black;
+}
+
+* * .workout-table-header {
+    background: black;
+    color: #fff;
+} *
+    .workout-table-header h2 {
+        margin: 0;
+        padding-top: 2em;
+        font-size: 1em;
+        font-weight: normal;
+
+    } */
+
+.videoPlayer{
+    width: 50%; 
+    float: rl;
+    text-align: center;
+}

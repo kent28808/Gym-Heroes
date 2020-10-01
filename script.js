@@ -7,12 +7,19 @@ $(document).ready(function () {
     })
 
     function getVideo() {
+       var youtubeForm = ""
         $.ajax({
             type: "GET",
-            url: "'https://www.googleapis.com/youtube/v3/search?part=snippet&q=music&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
+            // url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=music%20" + youtubeForm + "&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
             dataType: "json",
             success: function (response) {
-                console.log(response);
+                
+                var videoId = response.etag;
+                // var youtubeForm = $("").val();
+                var youtubeEmbed = ("https://www.youtube.com/embed/" + videoID + "?autoplay=1")
+                $("#youtube").attr("src", youtubeEmbed);
+
+                
             }
         }
         )
@@ -40,36 +47,37 @@ $(document).ready(function () {
         })
     }
     //function will display filtered results based on the intial getExercise category function.
-    function getExercisesuccess(response, filteredresults){
+    function getExercisesuccess(response, filteredresults) {
         var results = response.results;
-        
+
         for (var i = 0; i < results.length; i++) {
-        //filtering results by if exercise has "name" only.  Also filtering results that do not contain license author=test.
-            if(results[i].name && results[i].license_author !== "admintest123") {
-            filteredresults.push(results[i])
-        }
+            //filtering results by if exercise has "name" only.  Also filtering results that do not contain license author=test.
+            if (results[i].name && results[i].license_author !== "admintest123") {
+                filteredresults.push(results[i])
+            }
             //console.log(results[i]);
         }
         //console.log(filteredresults);
         //Loop will go through results again and filter out the next 20 exercises with "names".  Not all exercises in the api are named properly.
-        if(filteredresults.length === 0){
+        if (filteredresults.length === 0) {
             $.ajax({
                 type: "Get",
                 url: response.next,
                 dataType: "json",
                 headers: {
                     Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
-                },    
+                },
                 //recursive function, will keep calling until filter results.length is > 0. Instead of stoping at the alloted "20" results.
-                success: function(results){
+                success: function (results) {
                     getExercisesuccess(results, filteredresults)
+
                 }
             })
         }
-        
-    }
 
-    function getExercises(id){
+    }
+    //exercises on api are listed by id.
+    function getExercises(id) {
         var filteredresults = [];
         $.ajax({
             type: "Get",
@@ -79,14 +87,42 @@ $(document).ready(function () {
             headers: {
                 Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
             },
-            success: function(results){
-                getExercisesuccess(results, filteredresults)
+            success: function (resultscategory) {
+                getExercisesuccess(resultscategory, filteredresults)
+                $.ajax({
+                    type: "Get",
+                    url: "https://wger.de/api/v2/exerciseimage/"+id+"/thumbnails/",
+                    dataType: "json",
+                    headers: {
+                        Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
+                    },
+                    success: function (resultsimgs){
+                        $.ajax({
+                            type: "Get",
+                            url: "https://wger.de/api/v2/exerciseinfo/"+id+"/",
+                            dataType: "json",
+                            headers: {
+                                Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
+                            },
+                            success: function(resultsinfo){
+                                console.log(resultsinfo)
+                                console.log(resultscategory)
+                                console.log(resultsimgs)
+
+
+                            }
+                        })
+                    }
+                
+                    
+                })
+
             }
-              
-               
-            
+
+
+
         })
-        console.log(filteredresults)
+        //console.log(filteredresults)
     }
 
 })
