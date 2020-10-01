@@ -1,54 +1,55 @@
 body {
     background-color: #2589bd;
-}
-
-
-.main-container {
     text-align: center;
-    padding-top: 10px;
-  }
+}
 
 
 .container {
     margin: 0 auto;
+    float: left;
+    
 }
 
-.pure-menu-link {
-    background-color: white;
-}
 
- .workout-tables,
- .information {
-    max-width: 5000px;
-    margin: 0 auto;
- }
 .workout-tables {
+    margin: 0 auto;
     margin-bottom: 3.125em;
     text-align: center;
-}
+    float: left;
+}  
 
 
 .workout-table {
-    border: 1px solid #ddd;
+    border: 3px solid #ddd;
     margin: 0 0.5em 2em;
     padding: 0 0 3em;
     background: black;
 }
 
-* * .workout-table-header {
+
+ .workout-table-header {
     background: black;
     color: #fff;
-} *
-    .workout-table-header h2 {
-        margin: 0;
-        padding-top: 2em;
-        font-size: 1em;
-        font-weight: normal;
+} 
 
-    } */
+
+.pure-control-group {
+    color: white;
+}
+
+
+.pure-menu-link {
+    background-color: white;
+}
+
+
+aside {
+    float: right;
+}
 
 .videoPlayer{
     width: 50%; 
-    float: rl;
-    text-align: center;
-}
+    float: left;
+    
+} 
+

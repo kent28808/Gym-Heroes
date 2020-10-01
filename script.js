@@ -3,6 +3,9 @@ $(document).ready(function () {
         event.preventDefault()
         getVideo();
         getExcercisecategories();
+        var workoutWindow = $("#workoutChooser");
+        workoutWindow.addClass("hide");
+        
 
     })
 
@@ -10,12 +13,12 @@ $(document).ready(function () {
         var youtubeForm = ""
         $.ajax({
             type: "GET",
-            // url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=music%20" + youtubeForm + "&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
+            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=music%20" + youtubeForm + "&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
             dataType: "json",
             success: function (response) {
 
                 var videoId = response.etag;
-                // var youtubeForm = $("").val();
+                var youtubeForm = $("#musicForm").val();
                 var youtubeEmbed = ("https://www.youtube.com/embed/" + videoID + "?autoplay=1")
                 $("#youtube").attr("src", youtubeEmbed);
 
@@ -81,7 +84,8 @@ $(document).ready(function () {
         var filteredresults = [];
         $.ajax({
             type: "Get",
-            //filter by language for english (2) in url link.
+            //filter by language by adding language query to url. English is (2) in url link.
+            //category includes description.
             url: "https://wger.de/api/v2/exercise/?format=json&language=2&category=" + id,
             dataType: "json",
             headers: {
@@ -100,7 +104,8 @@ $(document).ready(function () {
                         console.log("exercisenumber" + id)
                         console.log(resultscategory)
                         console.log(resultsimgs)
-
+                    
+                        
 
                     }
 
