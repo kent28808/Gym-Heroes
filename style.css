@@ -1,55 +1,16 @@
 body {
-    background-color: #2589bd;
-    text-align: center;
+    background-color: black;
 }
 
-
-.container {
-    margin: 0 auto;
-    float: left;
-    
+.brand-logo {
+    font-family: 'Secular One', sans-serif;
 }
 
+.card-content {
+    font-family: 'Secular One', sans-serif;
 
-.workout-tables {
-    margin: 0 auto;
-    margin-bottom: 3.125em;
-    text-align: center;
-    float: left;
-}  
-
-
-.workout-table {
-    border: 3px solid #ddd;
-    margin: 0 0.5em 2em;
-    padding: 0 0 3em;
-    background: black;
 }
 
-
- .workout-table-header {
-    background: black;
-    color: #fff;
-} 
-
-
-.pure-control-group {
-    color: white;
+.hide {
+    display: none;
 }
-
-
-.pure-menu-link {
-    background-color: white;
-}
-
-
-aside {
-    float: right;
-}
-
-.videoPlayer{
-    width: 50%; 
-    float: left;
-    
-} 
-

@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $("#choose-button").on("click", function () {
-        event.preventDefault()
+    $("#start-button").on("click", function () {
+        event.preventDefault();
         getVideo();
         getExcercisecategories();
         var workoutWindow = $("#workoutChooser");
@@ -9,24 +9,37 @@ $(document).ready(function () {
 
     })
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems, options);
+      });
+    
+      // Or with jQuery
+    
+      $('.dropdown-trigger').dropdown();
+
     function getVideo() {
-        var youtubeForm = ""
+        var youtubeForm = $("#aligned-music").val()
+        var musicGenerator = ("music%20" + youtubeForm);
         $.ajax({
-            type: "GET",
-            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=music%20" + youtubeForm + "&key=AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
-            dataType: "json",
-            success: function (response) {
-
-                var videoId = response.etag;
-                var youtubeForm = $("#musicForm").val();
-                var youtubeEmbed = ("https://www.youtube.com/embed/" + videoID + "?autoplay=1")
-                $("#youtube").attr("src", youtubeEmbed);
-
-
-            }
+          type: 'GET',
+          url: 'https://www.googleapis.com/youtube/v3/search',
+          data: {
+              key: "AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
+              q: musicGenerator,
+              part: 'snippet',
+              maxResults: 1,
+              type: 'video',
+              videoEmbeddable: true,
+          },
+          success: function(data){
+              $("#youtube").attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId + "?autoplay=1") 
+              console.log(youtubeForm)
+          },
+        })
         }
-        )
-    }
+   
+
 
     //Categories are "arms", "legs", "abs", "chest", "back", "shoulders", "calves".
     function getExcercisecategories() {
@@ -80,12 +93,13 @@ $(document).ready(function () {
 
     }
     //exercises on api are listed by id.
+    //each category is linked to individual apis, which resulted in using
     function getExercises(id) {
         var filteredresults = [];
         $.ajax({
             type: "Get",
             //filter by language by adding language query to url. English is (2) in url link.
-            //category includes description.
+            //Exercise category includes exercise description.
             url: "https://wger.de/api/v2/exercise/?format=json&language=2&category=" + id,
             dataType: "json",
             headers: {
@@ -104,7 +118,17 @@ $(document).ready(function () {
                         console.log("exercisenumber" + id)
                         console.log(resultscategory)
                         console.log(resultsimgs)
-                    
+                        $("#workout").empty();
+                        for(var i = 0; i < resultscategory.results.length; i++){
+                            var card = $("<div>").addClass("card")
+                            var cardbody = $("<div>").addClass("card-body" ).text(resultscategory.results[i].description)
+                            var category = $("<p>").text(resultscategory.results[i].category)
+                            var img = $("<img>").attr("src","https://wger.de"+resultsimgs.large_cropped.url)
+                            card.append(img, category, cardbody)
+                            
+                            $("#workout").append(card)
+
+                        }
                         
 
                     }
