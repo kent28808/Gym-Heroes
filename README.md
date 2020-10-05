@@ -9,7 +9,7 @@ GymHero allows you to be able to access instructional information regarding your
 
 
 
-![GymHeroes App](my-class-repo/Project-01/Screenshots/homepage.png)
+![GymHeroes App](https://github.com/kent28808/Project-01/blob/master/Screenshots/homepage.png)
 
 
 ## Built With
