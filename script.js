@@ -2,16 +2,26 @@ $(document).ready(function () {
     $("#start-button").on("click", function () {
         event.preventDefault();
         getVideo();
-        getExcercisecategories();
-        var workoutWindow = $("#workoutChooser");
-        workoutWindow.addClass("hide");
+        //getExcercisecategories();
+        getExercises(choiceid);
+        $("#dropdownCard").attr("class", "hide");
+        $("#imgCard").removeClass("hide");
         
-
     })
-
+  
+    
+    //event listener for drop choice options linking workout id with thumbnails and descriptions for each.
+    var choiceid = 8
+    $(document).on("click", ".dropChoice", function (event) {
+        event.preventDefault();
+        choiceid = $(this).attr("id");
+        console.log(choiceid);
+    })
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.dropdown-trigger');
         var instances = M.Dropdown.init(elems, options);
+        var workoutType = $(".dropChoice").val()
+        console.log(workoutType)
       });
     
       // Or with jQuery
@@ -19,7 +29,7 @@ $(document).ready(function () {
       $('.dropdown-trigger').dropdown();
 
     function getVideo() {
-        var youtubeForm = $("#aligned-music").val()
+        var youtubeForm = $("#autocomplete-input").val()
         var musicGenerator = ("music%20" + youtubeForm);
         $.ajax({
           type: 'GET',
@@ -41,38 +51,20 @@ $(document).ready(function () {
    
 
 
-    //Categories are "arms", "legs", "abs", "chest", "back", "shoulders", "calves".
-    function getExcercisecategories() {
 
-        $.ajax({
-            type: "Get",
-            url: "https://wger.de/api/v2/exercisecategory/?format=json",
-            dataType: "json",
-            headers: {
-                Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
-            },
-            success: function (response) {
-                console.log(response)
-                var results = response.results;
-                for (var i = 0; i < results.length; i++) {
-                    //displays results by "id"
-                    getExercises(results[i].id);
-                    //console.log(results[i]);
-                }
-            }
-        })
-    }
     //function will display filtered results based on the intial getExercise category function.
     function getExercisesuccess(response, filteredresults) {
         var results = response.results;
 
         for (var i = 0; i < results.length; i++) {
             //filtering results by if exercise has "name" only.  Also filtering results that do not contain license author=test.
-            if (results[i].name && results[i].license_author !== "admintest123") {
-                filteredresults.push(results[i])
+            if ((results[i].name && results[i].license_author !== "admintest123") && (results[i].license_author !== "test+++" ) && (results[i].license_author !== "Magenta" )
+
+            ) {
+                filteredresults.push(results[i]);
             }
-            //console.log(results[i]);
-        }
+            // console.log("This is filtered data", results[i]);
+        }console.log("This is filtered data",filteredresults);
         //console.log(filteredresults);
         //Loop will go through results again and filter out the next 20 exercises with "names".  Not all exercises in the api are named properly.
         if (filteredresults.length === 0) {
@@ -81,11 +73,11 @@ $(document).ready(function () {
                 url: response.next,
                 dataType: "json",
                 headers: {
-                    Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
+                    Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507",
                 },
                 //recursive function, will keep calling until filter results.length is > 0. Instead of stoping at the alloted "20" results.
                 success: function (results) {
-                    getExercisesuccess(results, filteredresults)
+                    getExercisesuccess(results, filteredresults);
 
                 }
             })
@@ -103,34 +95,45 @@ $(document).ready(function () {
             url: "https://wger.de/api/v2/exercise/?format=json&language=2&category=" + id,
             dataType: "json",
             headers: {
-                Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
+                Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507",
             },
             success: function (resultscategory) {
-                getExercisesuccess(resultscategory, filteredresults)
+                getExercisesuccess(resultscategory, filteredresults);
+                    
+
+
                 $.ajax({
                     type: "Get",
                     url: "https://wger.de/api/v2/exerciseimage/" + id + "/thumbnails/?language=2",
                     dataType: "json",
                     headers: {
-                        Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507"
+                        Authorization: "Token 16a85a599865174319c1a5f12bced324e58d7507",
                     },
                     success: function (resultsimgs) {
-                        console.log("exercisenumber" + id)
-                        console.log(resultscategory)
-                        console.log(resultsimgs)
-                        $("#workout").empty();
-                        for(var i = 0; i < resultscategory.results.length; i++){
-                            var card = $("<div>").addClass("card")
-                            var cardbody = $("<div>").addClass("card-body" ).text(resultscategory.results[i].description)
-                            var category = $("<p>").text(resultscategory.results[i].category)
-                            var img = $("<img>").attr("src","https://wger.de"+resultsimgs.large_cropped.url)
-                            card.append(img, category, cardbody)
-                            
-                            $("#workout").append(card)
 
-                        }
-                        
+                    var imageURL = ("https://wger.de"+ resultsimgs.medium_cropped.url);
+                        $(".workoutImg").attr("src", imageURL);
 
+                        //console.log("exercisenumber" + id);
+                        //console.log(resultscategory);
+                        // console.log(resultsimgs);
+                        // $("#workout").empty();
+                        // for(var i = 0; i < resultscategory.results.length; i++){
+                        //     var card = $("<div>").addClass("card");
+                        //     //console.log(resultscategory.results[i].description)
+                        //     var cardbody = $("<div>").addClass("card-body" ).text(resultscategory.results[i].description);
+                        //     var category = $("<p>").text(resultscategory.results[i].category);
+                        //     var img = $("<img>").attr("src","https://wger.de"+resultsimgs.large_cropped.url);
+                        //     var descriptionresults = (resultscategory.results[i].description)
+                        //     //console.log(descriptionresults)
+                        //     card.append(img, category, cardbody);
+                        //     $("#workout").append(card);
+                        // }
+                       
+
+
+                      
+                
                     }
 
                 })
