@@ -9,7 +9,7 @@ GymHero allows you to be able to access instructional information regarding your
 
 
 
-![GymHeroes App](my-class-repo/Project-01/Screenshots/Screen Shot 2020-10-05 at 11.39.28 AM.png)
+![GymHeroes App](Screenshots/Screen Shot 2020-10-05 at 11.39.28 AM.png/)
 
 
 ## Built With
