@@ -31,7 +31,7 @@ GymHero allows you to be able to access instructional information regarding your
 ## Authors
 
 * Liam Bradley [LinkedIn](https://www.linkedin.com/in/liam-bradley-49492670/) , [Github](https://github.com/Liamhbradley11)
-* Ryan Nemec [LinkedIn](https://www.linkedin.com/in/ryan-nemec-5a6b3a66/), [Github](github.com/perfectoment)
+* Ryan Nemec [LinkedIn](https://www.linkedin.com/in/ryan-nemec-5a6b3a66/) , [Github](github.com/perfectoment)
 * Ken Tanoue [Link to Github](https://github.com/kent28808/)
 
 ## License
