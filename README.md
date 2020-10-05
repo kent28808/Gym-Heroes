@@ -9,7 +9,7 @@ GymHero allows you to be able to access instructional information regarding your
 
 
 
-![GymHeroes App](my-class-repo/Project-01/Screenshots/Screen Shot 2020-10-05 at 11.39.28 AM.png)
+![GymHeroes App](my-class-repo/Project-01/Screenshots/homepage.png)
 
 
 ## Built With
@@ -19,8 +19,8 @@ GymHero allows you to be able to access instructional information regarding your
 * [Materializecss](https://materializecss.com/)
 * [JS](https://www.w3schools.com/js/)
 * [Garlicjs](https://garlicjs.org/#usage)
-* [JQuery] (https://www.jquery.com)
-* [Moment.js] (https://www.momentjs.com)
+* [JQuery](https://www.jquery.com)
+* [Moment.js](https://www.momentjs.com)
 
 
 ## Deployed Link
@@ -30,10 +30,9 @@ GymHero allows you to be able to access instructional information regarding your
 
 ## Authors
 
-* **Liam Bradley, Ryan Nemec, Ken Tanoue** 
-
-
-- [Link to Github](https://github.com/kent28808/)
+* Liam Bradley [LinkedIn](https://www.linkedin.com/in/liam-bradley-49492670/) , [Github](https://github.com/Liamhbradley11)
+* Ryan Nemec [LinkedIn](https://www.linkedin.com/in/ryan-nemec-5a6b3a66/), [Github](github.com/perfectoment)
+* Ken Tanoue [Link to Github](https://github.com/kent28808/)
 
 ## License
 
