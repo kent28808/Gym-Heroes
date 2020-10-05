@@ -6,10 +6,10 @@ $(document).ready(function () {
         getExercises(choiceid);
         $("#dropdownCard").attr("class", "hide");
         $("#imgCard").removeClass("hide");
-        
+
     })
-  
-    
+
+
     //event listener for drop choice options linking workout id with thumbnails and descriptions for each.
     var choiceid = 8
     $(document).on("click", ".dropChoice", function (event) {
@@ -17,38 +17,38 @@ $(document).ready(function () {
         choiceid = $(this).attr("id");
         console.log(choiceid);
     })
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.dropdown-trigger');
         var instances = M.Dropdown.init(elems, options);
         var workoutType = $(".dropChoice").val()
         console.log(workoutType)
-      });
-    
-      // Or with jQuery
-    
-      $('.dropdown-trigger').dropdown();
+    });
+
+    // Or with jQuery
+
+    $('.dropdown-trigger').dropdown();
 
     function getVideo() {
         var youtubeForm = $("#autocomplete-input").val()
         var musicGenerator = ("music%20" + youtubeForm);
         $.ajax({
-          type: 'GET',
-          url: 'https://www.googleapis.com/youtube/v3/search',
-          data: {
-              key: "AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
-              q: musicGenerator,
-              part: 'snippet',
-              maxResults: 1,
-              type: 'video',
-              videoEmbeddable: true,
-          },
-          success: function(data){
-              $("#youtube").attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId + "?autoplay=1") 
-              console.log(youtubeForm)
-          },
+            type: 'GET',
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            data: {
+                key: "AIzaSyAJ1ag4z7gAcPM3dQ14tX7COYqKiYeK6B4",
+                q: musicGenerator,
+                part: 'snippet',
+                maxResults: 1,
+                type: 'video',
+                videoEmbeddable: true,
+            },
+            success: function (data) {
+                $("#youtube").attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId + "?autoplay=1")
+                console.log(youtubeForm)
+            },
         })
-        }
-   
+    }
+
 
 
 
@@ -58,13 +58,13 @@ $(document).ready(function () {
 
         for (var i = 0; i < results.length; i++) {
             //filtering results by if exercise has "name" only.  Also filtering results that do not contain license author=test.
-            if ((results[i].name && results[i].license_author !== "admintest123") && (results[i].license_author !== "test+++" ) && (results[i].license_author !== "Magenta" )
+            if ((results[i].name && results[i].license_author !== "admintest123") && (results[i].license_author !== "test+++") && (results[i].license_author !== "Magenta")
 
             ) {
                 filteredresults.push(results[i]);
             }
             // console.log("This is filtered data", results[i]);
-        }console.log("This is filtered data",filteredresults);
+        } console.log("This is filtered data", filteredresults);
         //console.log(filteredresults);
         //Loop will go through results again and filter out the next 20 exercises with "names".  Not all exercises in the api are named properly.
         if (filteredresults.length === 0) {
@@ -99,7 +99,7 @@ $(document).ready(function () {
             },
             success: function (resultscategory) {
                 getExercisesuccess(resultscategory, filteredresults);
-                    
+
 
 
                 $.ajax({
@@ -111,29 +111,10 @@ $(document).ready(function () {
                     },
                     success: function (resultsimgs) {
 
-                    var imageURL = ("https://wger.de"+ resultsimgs.medium_cropped.url);
+                        var imageURL = ("https://wger.de" + resultsimgs.medium_cropped.url);
                         $(".workoutImg").attr("src", imageURL);
 
-                        //console.log("exercisenumber" + id);
-                        //console.log(resultscategory);
-                        // console.log(resultsimgs);
-                        // $("#workout").empty();
-                        // for(var i = 0; i < resultscategory.results.length; i++){
-                        //     var card = $("<div>").addClass("card");
-                        //     //console.log(resultscategory.results[i].description)
-                        //     var cardbody = $("<div>").addClass("card-body" ).text(resultscategory.results[i].description);
-                        //     var category = $("<p>").text(resultscategory.results[i].category);
-                        //     var img = $("<img>").attr("src","https://wger.de"+resultsimgs.large_cropped.url);
-                        //     var descriptionresults = (resultscategory.results[i].description)
-                        //     //console.log(descriptionresults)
-                        //     card.append(img, category, cardbody);
-                        //     $("#workout").append(card);
-                        // }
-                       
 
-
-                      
-                
                     }
 
                 })
