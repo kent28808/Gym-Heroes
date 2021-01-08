@@ -1,4 +1,4 @@
-# Project-01
+# Gym Heroes
 
 ## Description
 
