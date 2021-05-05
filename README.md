@@ -25,7 +25,7 @@ GymHero allows you to be able to access instructional information regarding your
 
 ## Deployed Link
 
-* [Deployed link](https://kent28808.github.io/Project-01/)
+* [Deployed link](https://kent28808.github.io/Gym-Heroes/)
 
 
 ## Authors
